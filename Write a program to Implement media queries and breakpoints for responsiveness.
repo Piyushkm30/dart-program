@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            double w = constraints.maxWidth;
+
+            if (w < 600) {
+              return _box(Colors.red, "Mobile");
+            } else if (w < 1200) {
+              return _box(Colors.green, "Tablet");
+            } else {
+              return _box(Colors.blue, "Desktop");
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _box(Color c, String text) {
+    return Container(
+      color: c,
+      child: Center(child: Text(text, style: const TextStyle(fontSize: 30))),
+    );
+  }
+}
